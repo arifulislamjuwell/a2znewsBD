@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #local_app
-    'authenticate'
+    'authenticate',
+    'scrap'
 ]
 
 MIDDLEWARE = [
