@@ -20,17 +20,18 @@ a2zNewsBD
     opacity: 0
   }
   .alert-danger{
+    color: red;
     text-align: center;
+    background-color: goldenrod
   }
 </style>
 <div class="container" id="card">
   <div class="d-flex justify-content-center h-100">
     <div class="card">
       <div class="card-header">
-        <button @click="checkButton('login')" :class="{ 'button button1 active' : clickedButton === 'login' }">Log
+        <button @click="checkButton('login')" :class="{button : buttonClass.button, button1: buttonClass.button1 , active: clickedButton === 'login','big-font': clickedButton === 'login'}">Log
           In</button>
-        <button @click="checkButton('registration')"
-          :class="{ 'button button1 active' : clickedButton === 'registration' }">Registration</button>
+        <button @click="checkButton('registration')" :class="{button : buttonClass.button, button1: buttonClass.button1, active: clickedButton === 'registration', 'big-font': clickedButton === 'registration' }" >Registration</button>
         <div class="d-flex justify-content-end social_icon">
           <span v-if="clickedButton=== 'login'"><i class="fab fa-facebook-square"></i></span>
           <span v-if="clickedButton=== 'login'"><i class="fab fa-google-plus-square"></i></span>
@@ -46,18 +47,18 @@ a2zNewsBD
 
 
           <div v-if="clickedButton=== 'login'">
-          <input-field input-type="text" icon="fas fa-user" place-holder-value="username" v-model="username">
+          <input-field input-type="text" icon="fas fa-user" place-holder-value="username" v-model="user">
           </input-field>
-          <input-field input-type="password" icon="fas fa-key" place-holder-value="password" v-model="password">
+          <input-field input-type="password" icon="fas fa-key" place-holder-value="password" v-model="pass">
           </input-field>
       </div>
       <div v-else>
-        <input-field input-type="text" icon="fas fa-user" place-holder-value="username"></input-field>
-        <input-field input-type="password" icon="fas fa-key" place-holder-value="email"></input-field>
-        <input-field input-type="text" icon="fas fa-user" place-holder-value="phone number"></input-field>
-        <input-field input-type="password" icon="fas fa-key" place-holder-value=""></input-field>
-        <input-field input-type="text" icon="fas fa-user" place-holder-value="phone number"></input-field>
-        <input-field input-type="password" icon="fas fa-key" place-holder-value=""></input-field>
+        <input-field input-type="text"     icon="fas fa-user"     place-holder-value="username"         v-model="username"        :is-disable="disabledOption.username"></input-field>
+        <input-field input-type="email"    icon="fas fa-envelope" place-holder-value="email"            v-model="email"            :is-disable="disabledOption.email"></input-field>
+        <input-field input-type="text"     icon="fas fa-phone"    place-holder-value="phone number"     v-model="mobileNumber"    :is-disable="disabledOption.mobileNumber"></input-field>
+        <input-field input-type="password" icon="fas fa-key"      place-holder-value="password"         v-model="password"        :is-disable="disabledOption.password"></input-field>
+        <input-field input-type="password" icon="fas fa-key"      place-holder-value="confirm password" v-model="confirmPassword" :is-disable="disabledOption.confirmPassword"></input-field>
+        <input-field input-type="text"     icon="fas fa-grin-alt" place-holder-value="age"              v-model="age"             :is-disable="disabledOption.age"></input-field>
       </div>
 
       <div class="row align-items-center remember">
@@ -65,8 +66,8 @@ a2zNewsBD
       </div>
       <div class="form-group">
         <input @click.prevent="login" v-if="clickedButton=== 'login'" type="submit" value="Login"
-          class="btn float-right login_btn" :disabled="checkErrorForDisable">
-        <input v-else type="submit" value="Registration" class="btn float-right login_btn">
+          class="btn float-right login_btn" >
+        <input v-else type="submit" value="Registration" class="btn float-right login_btn" :disabled="checkErrorForDisable">
       </div>
       </form>
     </div>

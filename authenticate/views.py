@@ -4,6 +4,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse
+from django.contrib.auth import authenticate
 
 class AuthenticateView(View):
 
@@ -19,6 +20,11 @@ class AuthenticateView(View):
 
         username= data['username']
         password= data['password']
-        print(username, password)
-        return JsonResponse({'user':4234})
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            pass
+        else:
+            return JsonResponse({'result': 'user not found'})
+
         # return render(request, 'homepage.html')
