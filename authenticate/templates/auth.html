@@ -9,51 +9,74 @@ a2zNewsBD
 {% endblock head %}
 
 {% block maincontent %}
+<style>
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 1s
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0
+  }
+  .alert-danger{
+    text-align: center;
+  }
+</style>
 <div class="container" id="card">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-                <button @click="checkButton('login')" :class="{ 'button button1 active' : clickedButton === 'login' }">Log In</button>
-                <button @click="checkButton('registration')" :class="{ 'button button1 active' : clickedButton === 'registration' }">Registration</button>	
-				<div class="d-flex justify-content-end social_icon">
-					<span v-if="clickedButton=== 'login'"><i class="fab fa-facebook-square"></i></span>
-					<span v-if="clickedButton=== 'login'"><i class="fab fa-google-plus-square"></i></span>
-				</div>
-            </div>
-            <div class="alert alert-danger" role="alert">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <button @click="checkButton('login')" :class="{ 'button button1 active' : clickedButton === 'login' }">Log
+          In</button>
+        <button @click="checkButton('registration')"
+          :class="{ 'button button1 active' : clickedButton === 'registration' }">Registration</button>
+        <div class="d-flex justify-content-end social_icon">
+          <span v-if="clickedButton=== 'login'"><i class="fab fa-facebook-square"></i></span>
+          <span v-if="clickedButton=== 'login'"><i class="fab fa-google-plus-square"></i></span>
+        </div>
+      </div>
+      <transition name="fade" mode="out-in">
+        <div v-if="ValidationMessage" class="alert-danger" role="alert">
+          [[ ValidationMessage ]]
+        </div>
+      </transition>
+      <div class="card-body">
+        <form>
 
-              </div>
-			<div class="card-body">
-				<form>
-                    <div v-if="clickedButton=== 'login'">
-                        <input-field  input-type="text" icon="fas fa-user" place-holder-value="username" v-model="username"></input-field>
-                        <input-field  input-type="password" icon="fas fa-key" place-holder-value="password" v-model="password"></input-field>
-                    </div>
-                   <div v-else>
-                    <input-field input-type="text" icon="fas fa-user" place-holder-value="username"></input-field> 
-                    <input-field input-type="password" icon="fas fa-key" place-holder-value="email"></input-field>
-                    <input-field input-type="text" icon="fas fa-user" place-holder-value="phone number"></input-field>
-                    <input-field input-type="password" icon="fas fa-key" place-holder-value=""></input-field>
-                    <input-field input-type="text" icon="fas fa-user" place-holder-value="phone number"></input-field>
-                    <input-field input-type="password" icon="fas fa-key" place-holder-value=""></input-field>   
-                 </div>
 
-                    <div class="row align-items-center remember">
-						<input type="checkbox">Remember Me {{ clickedButton }}
-					</div>
-					<div class="form-group">
-                        <input @click.prevent="login" v-if="clickedButton=== 'login'" type="submit" value="Login" class="btn float-right login_btn">
-                        <input v-else type="submit" value="Registration" class="btn float-right login_btn">
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
-				</div>
-			</div>
-		</div>
+          <div v-if="clickedButton=== 'login'">
+          <input-field input-type="text" icon="fas fa-user" place-holder-value="username" v-model="username">
+          </input-field>
+          <input-field input-type="password" icon="fas fa-key" place-holder-value="password" v-model="password">
+          </input-field>
+      </div>
+      <div v-else>
+        <input-field input-type="text" icon="fas fa-user" place-holder-value="username"></input-field>
+        <input-field input-type="password" icon="fas fa-key" place-holder-value="email"></input-field>
+        <input-field input-type="text" icon="fas fa-user" place-holder-value="phone number"></input-field>
+        <input-field input-type="password" icon="fas fa-key" place-holder-value=""></input-field>
+        <input-field input-type="text" icon="fas fa-user" place-holder-value="phone number"></input-field>
+        <input-field input-type="password" icon="fas fa-key" place-holder-value=""></input-field>
+      </div>
+
+      <div class="row align-items-center remember">
+        <input type="checkbox">Remember Me
+      </div>
+      <div class="form-group">
+        <input @click.prevent="login" v-if="clickedButton=== 'login'" type="submit" value="Login"
+          class="btn float-right login_btn" :disabled="checkErrorForDisable">
+        <input v-else type="submit" value="Registration" class="btn float-right login_btn">
+      </div>
+      </form>
     </div>
+    <div class="card-footer">
+      <div class="d-flex justify-content-center">
+        <a href="#">Forgot your password?</a>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 

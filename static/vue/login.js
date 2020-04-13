@@ -26,23 +26,32 @@ Vue.component('input-field', {
 
 
 let login = new Vue({
+    delimiters: ['[[',']]'],
     el: '#card',
     data: {
         clickedButton: 'login',
         username: null,
-        password:'',
-        ValidationMessage:''
+        password: null,
+        'ValidationMessage': null,
+        checkErrorForDisable: true
     },
     methods: {
         checkButton: function(buttonType){
             this.clickedButton= buttonType
         },
         userValidation: function(username){
-            console.log(username)
-            if(!isNaN(username.charAt(0))){
-                this.ValidationMessage= "this name start with number"
+            if (username === ""){
+                this.ValidationMessage= "user naem cannot be empty"
             }
-      
+            else if(!isNaN(username.charAt(0))){
+                this.ValidationMessage= "must use letter first"
+            }
+
+        },
+        passwordValidation: function(value){
+            if (value){
+               this.ValidationMessage = 'pass'
+            }
         },
         login: function(){
             axios.post('/login/', {
@@ -63,7 +72,13 @@ let login = new Vue({
     },
     watch: {
         username: function(value){
+            this.ValidationMessage=null
             this.userValidation(value);
+        },
+        password: function(value){
+            this.ValidationMessage=null
+            this.passwordValidation(value)
         }
+
     },
 })
