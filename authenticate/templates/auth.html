@@ -5,7 +5,7 @@
 a2zNewsBD
 {% endblock title %}
 {% block head %}
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 {% endblock head %}
 
 {% block maincontent %}
@@ -24,7 +24,31 @@ a2zNewsBD
     text-align: center;
     background-color: goldenrod
   }
+
 </style>
+
+<div id="news">
+  <transition name="slide-fade">
+  </transition>
+  <table class="table table-sm table-dark">
+    <thead>
+      <tr>
+        <th style="width: 10px;" scope="col">#</th>
+        <th scope="col">content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(n, index) in news" style="height: 1%;  font-size:10pt">
+        <th scope="row">[[ index+1 ]]</th>
+        <td>[[ n ]]  </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+
+</div>
+
 <div class="container" id="card">
   <div class="d-flex justify-content-center h-100">
     <div class="card">

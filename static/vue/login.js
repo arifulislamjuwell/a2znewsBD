@@ -23,7 +23,25 @@ Vue.component('input-field', {
 
 })
 
+let abc = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#news',
+    data: {
+      show: true,
+      news:null
+    },
+    mounted(){
+        var this_cur= this
+            axios.get('/prothom-alo/')
+                .then(function (response) {
+                    data= response.data.news;
+                    this_cur.news= data
+                })
+                .catch(function (error) {
 
+                });
+    }
+  })
 
 let login = new Vue({
     delimiters: ['[[', ']]'],

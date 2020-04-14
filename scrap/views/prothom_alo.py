@@ -15,13 +15,15 @@ class ProthomAloApiView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
-        requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+        requests.packages.urllib3.disable_warnings() 
+
         lis=[]
-        URL = 'https://www.prothomalo.com/'
+        URL = 'https://www.prothomalo.com/archive'
         page = requests.get(URL, verify=False)
         if page.status_code == requests.codes.ok:
-            print('ho')
-            soup = BeautifulSoup(page.content, 'html.parser')
-            mydivs = soup.find("a")
-            print(mydivs)
-        return render(request, 'test.html',{'api': lis})
+            soup = BeautifulSoup(page.content, 'lxml')
+            tagdiv= soup.find_all('h2' ,class_= "title_holder") 
+            for i in tagdiv:
+                lis.append(i.find('span', 'title').get_text())
+        return JsonResponse({'news': lis})
+
