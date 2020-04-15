@@ -7,6 +7,9 @@ import requests
 import pprint
 from bs4 import BeautifulSoup
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
+import logging
+
+logger = logging.getLogger('a2znewsBD')
 
 class ProthomAloApiView(View):
 

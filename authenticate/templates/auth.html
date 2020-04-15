@@ -28,25 +28,31 @@ a2zNewsBD
 </style>
 
 <div id="news">
+  <template>
+    <div>
+      <b-button v-b-toggle.sidebar-1>Toggle Sidebar</b-button>
+      <b-sidebar id="sidebar-1" title="Sidebar" shadow>
+        <div class="px-3 py-2">
+          <table class="table table-sm table-dark">
+            <thead>
+              <tr>
+                <th style="width: 10px;" scope="col">#</th>
+                <th scope="col">content</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(n, index) in news" style="height: 1%;  font-size:10pt">
+                <th scope="row">[[ index+1 ]]</th>
+                <td>[[ n ]]  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </b-sidebar>
+    </div>
+  </template>
   <transition name="slide-fade">
   </transition>
-  <table class="table table-sm table-dark">
-    <thead>
-      <tr>
-        <th style="width: 10px;" scope="col">#</th>
-        <th scope="col">content</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(n, index) in news" style="height: 1%;  font-size:10pt">
-        <th scope="row">[[ index+1 ]]</th>
-        <td>[[ n ]]  </td>
-      </tr>
-
-
-    </tbody>
-  </table>
-
 </div>
 
 <div class="container" id="card">

@@ -5,6 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import JsonResponse
 from django.contrib.auth import authenticate
+import logging
+
+logger = logging.getLogger('a2znewsBD')
 
 class AuthenticateView(View):
 
@@ -17,7 +20,7 @@ class AuthenticateView(View):
 
     def post(self, request):
         data=  json.loads(request.body.decode('utf-8'))
-
+        print(logger)
         username= data['username']
         password= data['password']
 

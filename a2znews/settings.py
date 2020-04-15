@@ -119,6 +119,42 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[%(asctime)s] %(levelname)s [%(pathname)s:%(lineno)d] %(message)s',
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR + '/../a2znews/logs/a2znewsbd.log',
+            'mode': 'a',
+            'maxBytes': 10 * 1024 * 1024,  # 10 MB LOG FILE SIZE
+            'backupCount': 2,
+            'encoding': None,
+            'delay': 0,
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'a2znewsBD': {
+            'handlers': ['file'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
