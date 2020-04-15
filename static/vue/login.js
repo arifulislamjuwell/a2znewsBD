@@ -155,9 +155,14 @@ let login = new Vue({
                 password: this.pass
             })
                 .then(function (response) {
-                    data= response.data.result;
-                    this_cur.ValidationMessage= data
 
+                    data= response.data.result;
+                    if (data === 'found'){
+                    window.location.href = "http://127.0.0.1:8000/";
+                    }
+                    else{
+                     this_cur.ValidationMessage= data
+                    }
                 })
                 .catch(function (error) {
 
