@@ -44,8 +44,26 @@ let homepage = new Vue({
                 });
                 axios.get('/bd-protidin/')
                 .then(function (response) {
+                    alert(response)
                     data= response.data.news;
                     this_cur.newspaperList[1].content= data
+                })
+                .catch(function (error) {
+
+                });
+
+                axios.get('/samakal/')
+                .then(function (response) {
+                    data= response.data.news;
+                    this_cur.newspaperList[2].content= data
+                })
+                .catch(function (error) {
+
+                });
+                axios.get('/dailynayadiganta/')
+                .then(function (response) {
+                    data= response.data.news;
+                    this_cur.newspaperList[3].content= data
                 })
                 .catch(function (error) {
 
