@@ -1,8 +1,6 @@
 Vue.component('input-field', {
-    data: function () {
+    data: function() {
         return {
-            username: '',
-            password: '',
             content: this.value,
         }
     },
@@ -16,43 +14,19 @@ Vue.component('input-field', {
     `,
     props: ['placeHolderValue', 'inputType', 'icon', 'value', 'isDisable'],
     methods: {
-        updateValue: function (value) {
+        updateValue: function(value) {
             this.$emit('input', value)
         }
     }
 
 })
 
-let abc = new Vue({
-    delimiters: ['[[', ']]'],
-    el: '#news',
-    data: {
-      show: true,
-      news:null
-    },
-    mounted(){
-        var this_cur= this
-            axios.get('/prothom-alo/')
-                .then(function (response) {
-                    data= response.data.news;
-                    this_cur.news= data
-                })
-                .catch(function (error) {
-
-                });
-    }
-  })
-
 let login = new Vue({
     delimiters: ['[[', ']]'],
     el: '#card',
     data: {
-        buttonClass: {
-            button: true,
-            button1: true,
-        },
 
-        disabledOption:{
+        disabledOption: {
             username: false,
             mobileNumber: true,
             password: true,
@@ -60,111 +34,110 @@ let login = new Vue({
             email: true,
             age: true
         },
-    
+
         clickedButton: 'login',
         ValidationMessage: null,
         checkErrorForDisable: true,
         user: null,
         pass: null,
-        username:null,
-        mobileNumber:null,
-        password:null,
-        confirmPassword:null,
-        email:null,
-        age:null
+        username: null,
+        mobileNumber: null,
+        password: null,
+        confirmPassword: null,
+        email: null,
+        age: null
     },
     methods: {
-        checkButton: function (buttonType) {
+        checkButton: function(buttonType) {
             this.clickedButton = buttonType
         },
-        userValidation: function (username) {
+        userValidation: function(username) {
 
             re = /^\w+$/;
             if (!re.test(username)) {
                 this.ValidationMessage = "Username must contain only letters, numbers and underscores!"
-                this.disabledOption.email= true;
+                this.disabledOption.email = true;
                 return false
             }
 
-            if (username.length< 6){
+            if (username.length < 6) {
                 this.ValidationMessage = "Username must contain 6 digit"
-                this.disabledOption.email= true;
+                this.disabledOption.email = true;
                 return false
             }
             if (username === " ") {
                 this.ValidationMessage = "Username cannot be empty"
-                this.disabledOption.email= true;
+                this.disabledOption.email = true;
                 return false
             }
-            this.ValidationMessage= null
+            this.ValidationMessage = null
             return true
 
 
         },
-        emailValidation: function(value){
-            re=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-            if(!re.test(value)){
-                this.ValidationMessage= 'You have entered an invalid email address!'
+        emailValidation: function(value) {
+            re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+            if (!re.test(value)) {
+                this.ValidationMessage = 'You have entered an invalid email address!'
                 return false
             }
-            this.ValidationMessage= null
+            this.ValidationMessage = null
             return true
         },
-        mobileNumberValidation: function(value){
+        mobileNumberValidation: function(value) {
 
-            re=/\+?(88)?0?1[56789][0-9]{8}\b/
-            if(!re.test(value)){
-                this.ValidationMessage= 'You have entered an invalid number!'
+            re = /\+?(88)?0?1[56789][0-9]{8}\b/
+            if (!re.test(value)) {
+                this.ValidationMessage = 'You have entered an invalid number!'
                 return false
             }
-            this.ValidationMessage= null
+            this.ValidationMessage = null
             return true
         },
-        passwordValidation: function (value) {
+        passwordValidation: function(value) {
             var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-            if(!re.test(value)){
-                this.ValidationMessage= 'Invalid password,at least one number,lowercase,uppercase letter and 6 digit'
+            if (!re.test(value)) {
+                this.ValidationMessage = 'Invalid password,at least one number,lowercase,uppercase letter and 6 digit'
                 return false
             }
-            this.ValidationMessage= null
+            this.ValidationMessage = null
             return true
 
         },
-        confirmPasswordValidation:function(value){
-            if(this.password !== value){
-                this.ValidationMessage= 'Password doesn\'t match'
+        confirmPasswordValidation: function(value) {
+            if (this.password !== value) {
+                this.ValidationMessage = 'Password doesn\'t match'
                 return false
             }
-            this.ValidationMessage= null
+            this.ValidationMessage = null
             return true
         },
-        ageValidation: function(value){
+        ageValidation: function(value) {
             var re = /^[1-9]?[0-9]{1}$|^100$/;
-            if(!re.test(value)){
-                this.ValidationMessage= 'Invalid age'
+            if (!re.test(value)) {
+                this.ValidationMessage = 'Invalid age'
                 return false
             }
-            this.ValidationMessage= null
+            this.ValidationMessage = null
             return true
 
         },
-        login: function () {
-            var this_cur= this
+        login: function() {
+            var this_cur = this
             axios.post('/login/', {
-                username: this.user,
-                password: this.pass
-            })
-                .then(function (response) {
+                    username: this.user,
+                    password: this.pass
+                })
+                .then(function(response) {
 
-                    data= response.data.result;
-                    if (data === 'found'){
-                    window.location.href = "http://127.0.0.1:8000/";
-                    }
-                    else{
-                     this_cur.ValidationMessage= data
+                    data = response.data.result;
+                    if (data === 'found') {
+                        window.location.href = "http://127.0.0.1:8000/";
+                    } else {
+                        this_cur.ValidationMessage = data
                     }
                 })
-                .catch(function (error) {
+                .catch(function(error) {
 
                 });
         }
@@ -174,41 +147,41 @@ let login = new Vue({
 
     },
     watch: {
-        username: function (value) {
+        username: function(value) {
             usernameValidationResult = this.userValidation(value);
-            if (usernameValidationResult){
-                this.disabledOption.email= false
+            if (usernameValidationResult) {
+                this.disabledOption.email = false
             }
         },
-        email: function(value){
-           emailValidationResult= this.emailValidation(value)
-           if (emailValidationResult){
-            this.disabledOption.mobileNumber= false
-        }
-        },
-        mobileNumber: function(value){
-            mobileNumberValidationResult= this.mobileNumberValidation(value)
-            if (mobileNumberValidationResult){
-                this.disabledOption.password= false
+        email: function(value) {
+            emailValidationResult = this.emailValidation(value)
+            if (emailValidationResult) {
+                this.disabledOption.mobileNumber = false
             }
         },
-        password: function (value) {
-            passwordValidationResult= this.passwordValidation(value)
-            if (passwordValidationResult){
-                this.disabledOption.confirmPassword= false
+        mobileNumber: function(value) {
+            mobileNumberValidationResult = this.mobileNumberValidation(value)
+            if (mobileNumberValidationResult) {
+                this.disabledOption.password = false
             }
         },
-        confirmPassword: function(value){
-            confirmPasswordValidationResult= this.confirmPasswordValidation(value)
-            if (confirmPasswordValidationResult){
-                this.disabledOption.age= false
+        password: function(value) {
+            passwordValidationResult = this.passwordValidation(value)
+            if (passwordValidationResult) {
+                this.disabledOption.confirmPassword = false
             }
         },
-        age: function(value){
-            ageValidationResult= this.ageValidation(value)
-            
-            if (this.username && this.mobileNumber && this.password && this.confirmPassword && this.email && this.age && this.ValidationMessage === null){
-                this.checkErrorForDisable= false
+        confirmPassword: function(value) {
+            confirmPasswordValidationResult = this.confirmPasswordValidation(value)
+            if (confirmPasswordValidationResult) {
+                this.disabledOption.age = false
+            }
+        },
+        age: function(value) {
+            ageValidationResult = this.ageValidation(value)
+
+            if (this.username && this.mobileNumber && this.password && this.confirmPassword && this.email && this.age && this.ValidationMessage === null) {
+                this.checkErrorForDisable = false
             }
         }
 

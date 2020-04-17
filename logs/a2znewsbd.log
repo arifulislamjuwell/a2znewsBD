@@ -2765,3 +2765,132 @@ Traceback (most recent call last):
   File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/bs4/element.py", line 885, in __getattr__
     self.__class__.__name__, attr))
 AttributeError: 'NavigableString' object has no attribute 's'
+[18/Apr/2020 00:24:28] WARNING [/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/utils/log.py:228] Not Found: /favicon.ico
+[18/Apr/2020 00:34:54] ERROR [/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/utils/log.py:228] Internal Server Error: /prothom-alo/
+Traceback (most recent call last):
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 994, in _validate_conn
+    conn.connect()
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connection.py", line 360, in connect
+    ssl_context=context,
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/util/ssl_.py", line 370, in ssl_wrap_socket
+    return context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/lib/python3.6/ssl.py", line 407, in wrap_socket
+    _context=self, _session=session)
+  File "/usr/lib/python3.6/ssl.py", line 817, in __init__
+    self.do_handshake()
+  File "/usr/lib/python3.6/ssl.py", line 1077, in do_handshake
+    self._sslobj.do_handshake()
+  File "/usr/lib/python3.6/ssl.py", line 689, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLError: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:852)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.prothomalo.com', port=443): Max retries exceeded with url: /archive (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:852)'),))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/a2znews/scrap/views/prothom_alo.py", line 18, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/views/generic/base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/a2znews/scrap/views/prothom_alo.py", line 25, in get
+    page = requests.get(URL, verify=False)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/adapters.py", line 514, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='www.prothomalo.com', port=443): Max retries exceeded with url: /archive (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:852)'),))
+[18/Apr/2020 00:39:47] WARNING [/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/utils/log.py:228] Not Found: /favicon.ico
+[18/Apr/2020 01:07:14] ERROR [/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/utils/log.py:228] Internal Server Error: /prothom-alo/
+Traceback (most recent call last):
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 376, in _make_request
+    self._validate_conn(conn)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 994, in _validate_conn
+    conn.connect()
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connection.py", line 360, in connect
+    ssl_context=context,
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/util/ssl_.py", line 370, in ssl_wrap_socket
+    return context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/lib/python3.6/ssl.py", line 407, in wrap_socket
+    _context=self, _session=session)
+  File "/usr/lib/python3.6/ssl.py", line 817, in __init__
+    self.do_handshake()
+  File "/usr/lib/python3.6/ssl.py", line 1077, in do_handshake
+    self._sslobj.do_handshake()
+  File "/usr/lib/python3.6/ssl.py", line 689, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLError: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:852)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/urllib3/util/retry.py", line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.prothomalo.com', port=443): Max retries exceeded with url: /archive (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:852)'),))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/a2znews/scrap/views/prothom_alo.py", line 18, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/views/generic/base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/a2znews/scrap/views/prothom_alo.py", line 25, in get
+    page = requests.get(URL, verify=False)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/requests/adapters.py", line 514, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='www.prothomalo.com', port=443): Max retries exceeded with url: /archive (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:852)'),))
+[18/Apr/2020 01:08:49] WARNING [/media/juwel/New Volume/python/a2z Bd News/myvenv/lib/python3.6/site-packages/django/utils/log.py:228] Not Found: /favicon.ico
